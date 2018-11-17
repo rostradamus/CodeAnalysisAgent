@@ -10,7 +10,7 @@ public class SomeRunningMain {
   void methodA() {
     try {
       System.out.println("Hello from inside methodA!");
-      Thread.sleep(5000);
+      Thread.sleep(1000);
     }
     catch (Exception e) {
       e.printStackTrace();
@@ -20,7 +20,7 @@ public class SomeRunningMain {
   void methodB() {
     try {
       System.out.println("Hello from inside methodB!");
-      Thread.sleep(3000);
+      Thread.sleep(800);
     }
     catch (Exception e) {
       e.printStackTrace();
