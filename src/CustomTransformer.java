@@ -6,24 +6,32 @@ import java.util.*;
 import javassist.*;
 
 public class CustomTransformer implements ClassFileTransformer {
-    public CustomTransformer() {
+    private String target;
+
+    public CustomTransformer(String target) {
         super();
+        this.target = target;
+    }
+
+    private boolean isLibrary(String className) {
+        return className.startsWith("java") || className.startsWith("sun") || className.startsWith("jdk");
     }
 
     public byte[] transform(ClassLoader loader, String className, Class redefiningClass, ProtectionDomain domain, byte[] bytes) {
+        if (isLibrary(className)) return bytes;
+        System.out.println("Transforming: " + className);
         return transformClass(redefiningClass,bytes);
     }
 
     private byte[] transformClass(Class classToTransform, byte[] b) {
-
         ClassPool pool = ClassPool.getDefault();
         CtClass cl = null;
         try {
             cl = pool.makeClass(new java.io.ByteArrayInputStream(b));
             CtBehavior[] methods = cl.getDeclaredBehaviors();
-            for (int i = 0; i < methods.length; i++) {
-                if (methods[i].isEmpty() == false) {
-                    changeMethod(methods[i]);
+            for (CtBehavior method : methods) {
+                if (!method.isEmpty()) {
+                    changeMethod(method);
                 }
             }
             b = cl.toBytecode();
@@ -40,9 +48,7 @@ public class CustomTransformer implements ClassFileTransformer {
     }
 
     private void changeMethod(CtBehavior method) throws CannotCompileException {
-        if (method.getName().startsWith("method")) {
-            method.insertBefore("System.out.println(\"started method at \" + new java.util.Date());");
-            method.insertAfter("System.out.println(\"ended method at \" + new java.util.Date());");
-        }
+        method.insertBefore("System.out.println(\"Running method:" + method.getName() + " in " + method.getDeclaringClass().getName() + "\");");
+
     }
 }

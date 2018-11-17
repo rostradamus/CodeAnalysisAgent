@@ -1,6 +1,6 @@
 JFLAGS = -g
 JC = javac
-JARFILE = agentAnalysis.jar
+JARFILE = CodeAnalysisAgent.jar
 SRC = $(shell find src -iname '*.java')
 all: $(JARFILE)
 
@@ -14,7 +14,7 @@ $(JARFILE): bin/*.class
 
 
 run: $(JARFILE)
-	java -javaagent:$(JARFILE) $(target)
+	java -javaagent:$(JARFILE)=$(target) -jar $(target) $(arg)
 
 clean:
 	-rm -rf  $(JARFILE) bin/*
