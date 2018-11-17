@@ -1,0 +1,4 @@
+Boot-Class-Path: javassist.jar
+Premain-Class: SampleMain
+Class-Path: bin/*.class
+
