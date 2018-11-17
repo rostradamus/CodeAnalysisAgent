@@ -6,3 +6,4 @@ bin/*
 out
 
 !lib/*.jar
+!samples/*.jar
