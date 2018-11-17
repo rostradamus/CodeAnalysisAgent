@@ -1,14 +1,13 @@
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
+package src;
+
 import java.security.*;
 import java.lang.instrument.*;
-import java.util.*;
 import javassist.*;
 
-public class SampleTransformer implements ClassFileTransformer {
+public class CustomTransformer implements ClassFileTransformer {
   private String runningClass;
 
-  public SampleTransformer(String runningClass) {
+  public CustomTransformer(String runningClass) {
     super();
     this.runningClass = runningClass;
   }

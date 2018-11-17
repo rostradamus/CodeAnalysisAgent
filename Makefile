@@ -7,9 +7,9 @@ all: $(JARFILE)
 .SUFFIXES: .java .class
 bin/%.class: $(SRC)
 	mkdir -p bin/
-	$(JC) -cp "lib/*" -sourcepath src -d bin/ $(JFLAGS) src/$*.java
+	$(JC) -cp "lib/*" -sourcepath src -d bin/ $(JFLAGS) src/*.java
 
-$(JARFILE): bin/SampleMain.class
+$(JARFILE): bin/Main.class
 	jar cvfm $(JARFILE) MANIFEST.MF -C bin .
 
 
