@@ -19,7 +19,6 @@ public class CustomTransformer implements ClassFileTransformer {
 
     public byte[] transform(ClassLoader loader, String className, Class redefiningClass, ProtectionDomain domain, byte[] bytes) {
         if (isLibrary(className)) return bytes;
-        System.out.println("Transforming: " + className);
         return transformClass(redefiningClass,bytes);
     }
 
@@ -28,9 +27,10 @@ public class CustomTransformer implements ClassFileTransformer {
         CtClass cl = null;
         try {
             cl = pool.makeClass(new java.io.ByteArrayInputStream(b));
+            System.out.println("Transforming: " + cl.getSimpleName());
             CtBehavior[] methods = cl.getDeclaredBehaviors();
             for (CtBehavior method : methods) {
-                if (!method.isEmpty()) {
+                if (!method.isEmpty() && !method.getName().contains("lambda")) {
                     changeMethod(method);
                 }
             }
@@ -48,7 +48,8 @@ public class CustomTransformer implements ClassFileTransformer {
     }
 
     private void changeMethod(CtBehavior method) throws CannotCompileException {
-        method.insertBefore("System.out.println(\"Running method:" + method.getName() + " in " + method.getDeclaringClass().getName() + "\");");
-
+        String className = method.getDeclaringClass().getSimpleName();
+        method.insertBefore("System.out.println(\"In class: " + className + ", Entering method:" + method.getName() + "\");");
+        method.insertAfter("System.out.println(\"In class: " + className + ", Exiting method:" + method.getName() + "\");");
     }
 }
