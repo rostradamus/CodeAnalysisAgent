@@ -29,6 +29,8 @@ public class CustomTransformer implements ClassFileTransformer {
             cl = pool.makeClass(new java.io.ByteArrayInputStream(b));
             System.out.println("Transforming: " + cl.getSimpleName());
             CtBehavior[] methods = cl.getDeclaredBehaviors();
+
+
             for (CtBehavior method : methods) {
                 if (!method.isEmpty() && !method.getName().contains("lambda")) {
                     changeMethod(method);
