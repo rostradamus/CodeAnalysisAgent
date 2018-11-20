@@ -1,4 +1,4 @@
-package src;
+package src.transformer;
 
 import java.security.*;
 import java.lang.instrument.*;
@@ -30,12 +30,12 @@ public class CustomTransformer implements ClassFileTransformer {
             System.out.println("Transforming: " + cl.getSimpleName());
             CtBehavior[] methods = cl.getDeclaredBehaviors();
 
-
             for (CtBehavior method : methods) {
                 if (!method.isEmpty() && !method.getName().contains("lambda")) {
                     changeMethod(method);
                 }
             }
+
             b = cl.toBytecode();
         }
         catch (Exception e) {
@@ -50,8 +50,14 @@ public class CustomTransformer implements ClassFileTransformer {
     }
 
     private void changeMethod(CtBehavior method) throws CannotCompileException {
+        String longClassName = method.getDeclaringClass().getName();
         String className = method.getDeclaringClass().getSimpleName();
-        method.insertBefore("System.out.println(\"In class: " + className + ", Entering method:" + method.getName() + "\");");
-        method.insertAfter("System.out.println(\"In class: " + className + ", Exiting method:" + method.getName() + "\");");
+
+//        method.insertBefore("System.out.println(\"In class: " + className + ", Entering method:" + method.getName() + "\");");
+        method.insertBefore("if (Thread.currentThread().getStackTrace().length > 2 " +
+                "&& !Thread.currentThread().getStackTrace()[2].getClassName().equals(\"" + longClassName + "\")) {" +
+                "System.out.println(\"In class: " + className + ", method: " + method.getName() + " is called by: \" " +
+                "+ Thread.currentThread().getStackTrace()[2].getClassName());}");
+//        method.insertAfter("System.out.println(\"In class: " + className + ", Exiting method:" + method.getName() + "\");");
     }
 }
