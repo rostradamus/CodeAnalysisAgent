@@ -15,6 +15,12 @@ public class MethodTracker {
         this.callerMap = new HashMap<>();
     }
 
+    public MethodTracker(String methodName, ClassTracker classTracker) {
+        this.methodName = methodName;
+        this.classTracker = classTracker;
+        this.callerMap = new HashMap<>();
+    }
+
     public String getMethodName() {
         return methodName;
     }
@@ -23,12 +29,23 @@ public class MethodTracker {
         return classTracker;
     }
 
-    public void setClassTracker(ClassTracker ct) {
-        ct.addMethod(this);
+    public void setClassTracker(ClassTracker classTracker) {
+        if (this.classTracker == null)
+            this.classTracker = classTracker;
     }
 
     public Map<MethodTracker, Integer> getCallerMap() {
         return callerMap;
+    }
+
+    public void logCall(ClassTracker callerClass, String calleeMethod) {
+        MethodTracker mt = callerClass.getMethodTracker(calleeMethod);
+        mt.setClassTracker(callerClass);
+        if (callerMap.get(mt) == null) {
+            callerMap.put(mt, 1);
+            return;
+        }
+        callerMap.put(mt, callerMap.get(mt) + 1);
     }
 
     @Override

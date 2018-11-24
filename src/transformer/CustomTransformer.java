@@ -1,9 +1,19 @@
 package src.transformer;
 
+import java.io.*;
+import java.net.URL;
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.*;
 import java.lang.instrument.*;
-import java.util.*;
+import java.util.Objects;
+
 import javassist.*;
+import javassist.bytecode.ClassFile;
+import src.tracker.ClassTracker;
 
 public class CustomTransformer implements ClassFileTransformer {
     private String target;
@@ -24,10 +34,20 @@ public class CustomTransformer implements ClassFileTransformer {
 
     private byte[] transformClass(Class classToTransform, byte[] b) {
         ClassPool pool = ClassPool.getDefault();
+        try {
+            pool.getClassLoader().loadClass("src.tracker.TrackerManager");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         CtClass cl = null;
         try {
             cl = pool.makeClass(new java.io.ByteArrayInputStream(b));
             System.out.println("Transforming: " + cl.getSimpleName());
+            if (cl.getName().contains("ClassTracker") || cl.getName().contains("MethodTracker")
+                || cl.getName().contains("TrackerManager")){
+                cl.detach();
+                return b;
+            }
             CtBehavior[] methods = cl.getDeclaredBehaviors();
 
             for (CtBehavior method : methods) {
@@ -52,12 +72,27 @@ public class CustomTransformer implements ClassFileTransformer {
     private void changeMethod(CtBehavior method) throws CannotCompileException {
         String longClassName = method.getDeclaringClass().getName();
         String className = method.getDeclaringClass().getSimpleName();
-
-//        method.insertBefore("System.out.println(\"In class: " + className + ", Entering method:" + method.getName() + "\");");
-        method.insertBefore("if (Thread.currentThread().getStackTrace().length > 2 " +
+        String customBlockV2 =
+                "if (Thread.currentThread().getStackTrace().length > 2 " +
                 "&& !Thread.currentThread().getStackTrace()[2].getClassName().equals(\"" + longClassName + "\")) {" +
-                "System.out.println(\"In class: " + className + ", method: " + method.getName() + " is called by: \" " +
-                "+ Thread.currentThread().getStackTrace()[2].getClassName());}");
+                "src.tracker.TrackerManager.getInstance().logMethodCall(" +
+                "\""+ longClassName +"\", \"" + method.getName() + "\", " +
+                "Thread.currentThread().getStackTrace()[2].getClassName()," +
+                "Thread.currentThread().getStackTrace()[2].getMethodName());" +
+                "src.tracker.TrackerManager.getInstance().summarizeLog(); }";
+        String customBlock = "src.tracker.ClassTracker ct = new src.tracker.ClassTracker(\""+ className + "\");" +
+                "System.out.println(ct.getClassName());";
+
+
+
+        method.insertBefore(customBlockV2);
+        System.out.println(method.getName());
+//        method.insertBefore("java.util.Map<java.lang.String, java.lang.String> tempList = new java.util.HashMap<>();");
+//        method.insertBefore("if (Thread.currentThread().getStackTrace().length > 2 " +
+//                "&& !Thread.currentThread().getStackTrace()[2].getClassName().equals(\"" + longClassName + "\")) {" +
+//                "System.out.println(\"In class: " + className + ", method: " + method.getName() + " is called by: \" " +
+//                "+ Thread.currentThread().getStackTrace()[2].getMethodName() + \" in \" " +
+//                "+ Thread.currentThread().getStackTrace()[2].getClassName());}");
 //        method.insertAfter("System.out.println(\"In class: " + className + ", Exiting method:" + method.getName() + "\");");
     }
 }
