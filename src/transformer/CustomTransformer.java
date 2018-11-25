@@ -42,7 +42,7 @@ public class CustomTransformer implements ClassFileTransformer {
         CtClass cl = null;
         try {
             cl = pool.makeClass(new java.io.ByteArrayInputStream(b));
-            System.out.println("Transforming: " + cl.getSimpleName());
+//            System.out.println("Transforming: " + cl.getSimpleName());
             if (cl.getName().contains("ClassTracker") || cl.getName().contains("MethodTracker")
                 || cl.getName().contains("TrackerManager")){
                 cl.detach();
@@ -76,23 +76,13 @@ public class CustomTransformer implements ClassFileTransformer {
                 "if (Thread.currentThread().getStackTrace().length > 2 " +
                 "&& !Thread.currentThread().getStackTrace()[2].getClassName().equals(\"" + longClassName + "\")) {" +
                 "src.tracker.TrackerManager.getInstance().logMethodCall(" +
-                "\""+ longClassName +"\", \"" + method.getName() + "\", " +
+                "\""+ className +"\", \"" + method.getName() + "\", " +
                 "Thread.currentThread().getStackTrace()[2].getClassName()," +
-                "Thread.currentThread().getStackTrace()[2].getMethodName());" +
-                "src.tracker.TrackerManager.getInstance().summarizeLog(); }";
-        String customBlock = "src.tracker.ClassTracker ct = new src.tracker.ClassTracker(\""+ className + "\");" +
-                "System.out.println(ct.getClassName());";
-
-
-
+                "Thread.currentThread().getStackTrace()[2].getMethodName());}";
         method.insertBefore(customBlockV2);
-        System.out.println(method.getName());
-//        method.insertBefore("java.util.Map<java.lang.String, java.lang.String> tempList = new java.util.HashMap<>();");
-//        method.insertBefore("if (Thread.currentThread().getStackTrace().length > 2 " +
-//                "&& !Thread.currentThread().getStackTrace()[2].getClassName().equals(\"" + longClassName + "\")) {" +
-//                "System.out.println(\"In class: " + className + ", method: " + method.getName() + " is called by: \" " +
-//                "+ Thread.currentThread().getStackTrace()[2].getMethodName() + \" in \" " +
-//                "+ Thread.currentThread().getStackTrace()[2].getClassName());}");
-//        method.insertAfter("System.out.println(\"In class: " + className + ", Exiting method:" + method.getName() + "\");");
+
+        if (method.getName().equals("main")) {
+            method.insertAfter("src.tracker.TrackerManager.getInstance().logAsJSON();");
+        }
     }
 }

@@ -1,0 +1,430 @@
+[
+
+    {
+        "name": "NativeMethodAccessorImpl.invoke0",
+        "size": 8390,
+        "imports": [
+        ]
+    },
+    {
+        "name": "DNSLookupService.sendAndReceivePacket",
+        "size": 6736,
+        "imports": [
+        ]
+    },
+    {
+        "name": "DNSLookupService.findInetAddressOfNSFromCache",
+        "size": 9192,
+        "imports": [
+            "ReferencePipeline$3$1.accept"
+        ]
+    },
+    {
+        "name": "DNSLookupService.findAndPrintResults",
+        "size": 4843,
+        "imports": [
+        ]
+    },
+    {
+        "name": "DNSLookupService.getResults",
+        "size": 1996,
+        "imports": [
+        ]
+    },
+    {
+        "name": "DNSLookupService.main",
+        "size": 1868,
+        "imports": [
+        ]
+    },
+    {
+        "name": "DNSLookupService.printResults",
+        "size": 3725,
+        "imports": [
+            "DNSCache.forEachNode"
+        ]
+    },
+    {
+        "name": "DNSLookupService.findInetAddressOfNSByType",
+        "size": 3376,
+        "imports": [
+        ]
+    },
+    {
+        "name": "DNSLookupService.<clinit>",
+        "size": 1835,
+        "imports": [
+        ]
+    },
+    {
+        "name": "DNSLookupService.retrieveResultsFromServer",
+        "size": 5122,
+        "imports": [
+        ]
+    },
+    {
+        "name": "ReferencePipeline$3$1.accept",
+        "size": 1962,
+        "imports": [
+        ]
+    },
+    {
+        "name": "HashMap.putVal",
+        "size": 2223,
+        "imports": [
+        ]
+    },
+    {
+        "name": "HashMap.getNode",
+        "size": 2632,
+        "imports": [
+        ]
+    },
+    {
+        "name": "HashMap.hash",
+        "size": 8505,
+        "imports": [
+        ]
+    },
+    {
+        "name": "DNSCache.forEachNode",
+        "size": 981,
+        "imports": [
+            "DNSLookupService.main"
+        ]
+    },
+    {
+        "name": "DNSCache.findFirstRRByNode",
+        "size": 614,
+        "imports": [
+            "DNSLookupService.findInetAddressOfNSByType",
+            "DNSLookupService.getResults",
+            "DNSLookupService.retrieveResultsFromServer"
+        ]
+    },
+    {
+        "name": "DNSCache.lambda$getCachedResults$0",
+        "size": 908,
+        "imports": [
+        ]
+    },
+    {
+        "name": "DNSCache.getCachedResults",
+        "size": 3579,
+        "imports": [
+            "DNSLookupService.getResults",
+            "DNSLookupService.retrieveResultsFromServer"
+        ]
+    },
+    {
+        "name": "DNSCache.lambda$forEachNode$1",
+        "size": 9241,
+        "imports": [
+        ]
+    },
+    {
+        "name": "DNSCache.getInstance",
+        "size": 4464,
+        "imports": [
+            "DNSDecoder.decodeResource",
+            "DNSLookupService.<clinit>"
+        ]
+    },
+    {
+        "name": "DNSCache.addResult",
+        "size": 2581,
+        "imports": [
+            "DNSDecoder.decodeResource"
+        ]
+    },
+    {
+        "name": "DNSCache.<clinit>",
+        "size": 2938,
+        "imports": [
+            "DNSLookupService.<clinit>"
+        ]
+    },
+    {
+        "name": "TreeMap.compare",
+        "size": 7210,
+        "imports": [
+        ]
+    },
+    {
+        "name": "TreeMap.getEntry",
+        "size": 1005,
+        "imports": [
+        ]
+    },
+    {
+        "name": "TreeMap.put",
+        "size": 2733,
+        "imports": [
+        ]
+    },
+    {
+        "name": "TrackerManager.logAsJSON",
+        "size": 9964,
+        "imports": [
+        ]
+    },
+    {
+        "name": "ResourceRecord.isStillValid",
+        "size": 3211,
+        "imports": [
+            "DNSCache.lambda$getCachedResults$0",
+            "DNSCache.addResult",
+            "DNSCache.lambda$forEachNode$1"
+        ]
+    },
+    {
+        "name": "ResourceRecord.getInetResult",
+        "size": 9750,
+        "imports": [
+            "DNSLookupService.findInetAddressOfNSByType",
+            "DNSLookupService.retrieveResultsFromServer"
+        ]
+    },
+    {
+        "name": "ResourceRecord.expiresBefore",
+        "size": 9292,
+        "imports": [
+            "DNSCache.addResult"
+        ]
+    },
+    {
+        "name": "ResourceRecord.getType",
+        "size": 4984,
+        "imports": [
+            "DNSLookupService.findInetAddressOfNSFromCache"
+        ]
+    },
+    {
+        "name": "ResourceRecord.hashCode",
+        "size": 7506,
+        "imports": [
+            "HashMap.hash"
+        ]
+    },
+    {
+        "name": "ResourceRecord.equals",
+        "size": 1295,
+        "imports": [
+            "HashMap.putVal",
+            "HashMap.getNode"
+        ]
+    },
+    {
+        "name": "ResourceRecord.getTextResult",
+        "size": 7811,
+        "imports": [
+            "DNSLookupService.findInetAddressOfNSByType",
+            "DNSLookupService.printResults",
+            "DNSLookupService.retrieveResultsFromServer"
+        ]
+    },
+    {
+        "name": "ResourceRecord.getNode",
+        "size": 4464,
+        "imports": [
+            "DNSCache.addResult"
+        ]
+    },
+    {
+        "name": "ResourceRecord.<init>",
+        "size": 1675,
+        "imports": [
+        ]
+    },
+    {
+        "name": "ResourceRecord.ResourceRecord",
+        "size": 1916,
+        "imports": [
+            "DNSDecoder.decodeResource"
+        ]
+    },
+    {
+        "name": "ResourceRecord.getTTL",
+        "size": 7023,
+        "imports": [
+            "DNSLookupService.printResults"
+        ]
+    },
+    {
+        "name": "DNSNode.DNSNode",
+        "size": 2149,
+        "imports": [
+            "DNSLookupService.findInetAddressOfNSByType",
+            "DNSLookupService.findAndPrintResults",
+            "DNSLookupService.getResults",
+            "ResourceRecord.<init>",
+            "DNSLookupService.retrieveResultsFromServer"
+        ]
+    },
+    {
+        "name": "DNSNode.getHostName",
+        "size": 8316,
+        "imports": [
+            "DNSLookupService.getResults",
+            "DNSEncode.createQuestion",
+            "DNSEncode.getLengthOfQuestion",
+            "DNSLookupService.printResults"
+        ]
+    },
+    {
+        "name": "DNSNode.getType",
+        "size": 5199,
+        "imports": [
+            "ResourceRecord.getType",
+            "DNSEncode.createQuestion",
+            "DNSLookupService.printResults"
+        ]
+    },
+    {
+        "name": "DNSNode.hashCode",
+        "size": 9750,
+        "imports": [
+            "ResourceRecord.hashCode"
+        ]
+    },
+    {
+        "name": "DNSNode.equals",
+        "size": 1245,
+        "imports": [
+            "ResourceRecord.equals"
+        ]
+    },
+    {
+        "name": "DNSNode.compareTo",
+        "size": 2618,
+        "imports": [
+            "TreeMap.getEntry",
+            "TreeMap.put",
+            "TreeMap.compare"
+        ]
+    },
+    {
+        "name": "RecordType.getByCode",
+        "size": 6053,
+        "imports": [
+            "DNSDecoder.decodeResource"
+        ]
+    },
+    {
+        "name": "RecordType.valueOf",
+        "size": 3705,
+        "imports": [
+            "DNSLookupService.main"
+        ]
+    },
+    {
+        "name": "RecordType.values",
+        "size": 8417,
+        "imports": [
+            "NativeMethodAccessorImpl.invoke0",
+            "DNSDecoder$1.<clinit>"
+        ]
+    },
+    {
+        "name": "RecordType.getCode",
+        "size": 1466,
+        "imports": [
+            "DNSEncode.createQuestion"
+        ]
+    },
+    {
+        "name": "RecordType.<clinit>",
+        "size": 2225,
+        "imports": [
+            "DNSLookupService.main"
+        ]
+    },
+    {
+        "name": "DNSEncode.getLengthOfQuestion",
+        "size": 2326,
+        "imports": [
+        ]
+    },
+    {
+        "name": "DNSEncode.getDNSHeader",
+        "size": 6052,
+        "imports": [
+            "DNSLookupService.sendAndReceivePacket"
+        ]
+    },
+    {
+        "name": "DNSEncode.getTransactionId",
+        "size": 6006,
+        "imports": [
+            "DNSLookupService.retrieveResultsFromServer"
+        ]
+    },
+    {
+        "name": "DNSEncode.DNSEncode",
+        "size": 2911,
+        "imports": [
+            "DNSLookupService.retrieveResultsFromServer"
+        ]
+    },
+    {
+        "name": "DNSEncode.createQuestion",
+        "size": 1713,
+        "imports": [
+        ]
+    },
+    {
+        "name": "DNSEncode.<clinit>",
+        "size": 7594,
+        "imports": [
+            "DNSLookupService.retrieveResultsFromServer"
+        ]
+    },
+    {
+        "name": "DNSDecoder$1.<clinit>",
+        "size": 1020,
+        "imports": [
+            "DNSDecoder.decodeResource"
+        ]
+    },
+    {
+        "name": "JsonLogger.logJson",
+        "size": 4313,
+        "imports": [
+            "TrackerManager.logAsJSON"
+        ]
+    },
+    {
+        "name": "DNSDecoder.isAuthoritative",
+        "size": 8202,
+        "imports": [
+            "DNSLookupService.retrieveResultsFromServer"
+        ]
+    },
+    {
+        "name": "DNSDecoder.decodeResource",
+        "size": 7754,
+        "imports": [
+        ]
+    },
+    {
+        "name": "DNSDecoder.getNameServers",
+        "size": 6154,
+        "imports": [
+            "DNSLookupService.retrieveResultsFromServer"
+        ]
+    },
+    {
+        "name": "DNSDecoder.decode",
+        "size": 9083,
+        "imports": [
+            "DNSLookupService.retrieveResultsFromServer"
+        ]
+    },
+    {
+        "name": "DNSDecoder.DNSDecoder",
+        "size": 2995,
+        "imports": [
+            "DNSLookupService.retrieveResultsFromServer"
+        ]
+    },
+]

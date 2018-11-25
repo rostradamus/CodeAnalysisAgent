@@ -1,5 +1,7 @@
 package src.tracker;
 
+import src.util.JsonLogger;
+
 import java.util.*;
 
 public class TrackerManager {
@@ -26,15 +28,8 @@ public class TrackerManager {
             System.out.println(k);
             v.getMethodTrackerMap().forEach(((k1, v1) -> {
                 System.out.println("---" + k1);
-                v1.getCallerMap().forEach(((k2,v2) -> {
-                    System.out.println("------" + k2.getClassTracker().getClassName() + "." + k2.getMethodName() + ": " + v2);
-//                    System.out.println("------" + k2.getMethodName() + ": " + v2);
-//                            if (k2.getClassTracker() != null && v2 != null)
-//                                System.out.println(k2.getClassTracker().getClassName() + "." + k2.getMethodName() + ": " + v2);
-//                            System.out.println(k2.getClassTracker().getClassName());
-//                            System.out.println(v2);
-
-                }));
+                v1.getCallerMap().forEach(((k2,v2) ->
+                        System.out.println("------" + k2.getClassTracker().getClassName() + "." + k2.getMethodName() + ": " + v2)));
             }));
         }));
     }
@@ -43,8 +38,17 @@ public class TrackerManager {
         ClassTracker calleeClass = getClassTracker(cname);
         MethodTracker calleeMethod = calleeClass.getMethodTracker(mname);
         calleeMethod.setClassTracker(calleeClass);
-        ClassTracker callerClass = getClassTracker(callerCname);
+        ClassTracker callerClass = getClassTracker(trimLongClassName(callerCname));
         calleeMethod.logCall(callerClass, callerMethod);
+    }
+
+    public void logAsJSON() {
+        JsonLogger.logJson(classTrackerMap);
+    }
+
+    private String trimLongClassName(String name) {
+        String[] elems = name.split("\\.");
+        return elems[elems.length - 1];
     }
 
     private ClassTracker getClassTracker(String cname) {

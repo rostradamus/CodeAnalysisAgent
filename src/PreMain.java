@@ -43,6 +43,6 @@ public class PreMain {
       tr.logMethodCall("ClassA", "MethodA-a", "ClassB", "MethodB-b");
       tr.logMethodCall("ClassB", "MethodB-a", "ClassA", "MethodA-a");
       tr.logMethodCall("ClassC", "MethodC-a", "ClassA", "MethodA-a");
-      tr.summarizeLog();
+      tr.logAsJSON();
   }
 }
