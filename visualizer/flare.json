@@ -1,341 +1,89 @@
 [
     {
-        "name": "Program.Program",
-        "size": 4714,
-        "imports": [{
-          "name": "Main.runProgram",
-          "counter":4
-          }
-      ]
-   }, {
-        "name": "Program.parse",
-        "size": 5005,
-        "imports": [{
-          "name": "Main.runProgram",
-          "counter":4
-          }
-      ]
-   }, {
-        "name": "Program.<init>",
-        "size": 4596,
+        "name": "NativeMethodAccessorImpl.invoke0",
+        "size": 5361,
         "imports": [
       ]
    }, {
-        "name": "Program.evaluate",
-        "size": 7505,
+        "name": "Trampoline.invoke",
+        "size": 2809,
         "imports": [{
-          "name": "Main.runProgram",
+          "name": "NativeMethodAccessorImpl.invoke0",
           "counter":4
           }
       ]
    }, {
-        "name": "Statement.<init>",
-        "size": 7731,
-        "imports": [
-      ]
-   }, {
-        "name": "Node.Node",
-        "size": 4321,
+        "name": "Trampoline.<clinit>",
+        "size": 1623,
         "imports": [{
-          "name": "Statement.<init>",
-          "counter":9
-          }, {
-          "name": "Program.<init>",
-          "counter":4
-          }
-      ]
-   }, {
-        "name": "Node.<init>",
-        "size": 5710,
-        "imports": [
-      ]
-   }, {
-        "name": "WhereAmI.parse",
-        "size": 8381,
-        "imports": [{
-          "name": "Program.parse",
+          "name": "Class.forName0",
           "counter":1
           }
       ]
    }, {
-        "name": "WhereAmI.evaluate",
-        "size": 4025,
+        "name": "JComponent.paintChildren",
+        "size": 4175,
+        "imports": [
+      ]
+   }, {
+        "name": "HandlerClass.HandlerClass",
+        "size": 7477,
         "imports": [{
-          "name": "Program.evaluate",
+          "name": "Main.run",
           "counter":1
           }
       ]
    }, {
-        "name": "ChangeDirectory.parse",
-        "size": 1144,
+        "name": "Class.forName0",
+        "size": 6692,
+        "imports": [
+      ]
+   }, {
+        "name": "Main$SamplePanel.paint",
+        "size": 1176,
         "imports": [{
-          "name": "Program.parse",
+          "name": "JComponent.paintChildren",
           "counter":1
           }
       ]
    }, {
-        "name": "ChangeDirectory.evaluate",
-        "size": 658,
+        "name": "Main$SamplePanel.Main$SamplePanel",
+        "size": 2173,
         "imports": [{
-          "name": "Program.evaluate",
+          "name": "Main.<init>",
           "counter":1
           }
       ]
    }, {
         "name": "TrackerManager.logAsJSON",
-        "size": 4633,
+        "size": 8652,
         "imports": [
       ]
    }, {
-        "name": "CurrentDirectory.parse",
-        "size": 9376,
+        "name": "Main.run",
+        "size": 1234,
         "imports": [{
-          "name": "ChangeDirectory.parse",
-          "counter":1
-          }, {
-          "name": "FileSystemElement.parse",
-          "counter":2
-          }
-      ]
-   }, {
-        "name": "CurrentDirectory.evaluate",
-        "size": 2404,
-        "imports": [{
-          "name": "FileSystemElement.evaluate",
-          "counter":2
-          }, {
-          "name": "ChangeDirectory.evaluate",
+          "name": "Thread.run",
           "counter":1
           }
       ]
    }, {
-        "name": "FileSystemElement.parse",
-        "size": 6810,
-        "imports": [{
-          "name": "Show.parse",
-          "counter":1
-          }, {
-          "name": "Find.parse",
-          "counter":1
-          }
-      ]
-   }, {
-        "name": "FileSystemElement.evaluate",
-        "size": 482,
-        "imports": [{
-          "name": "Find.evaluate",
-          "counter":1
-          }, {
-          "name": "Show.evaluate",
-          "counter":1
-          }
-      ]
-   }, {
-        "name": "Find.parse",
-        "size": 2759,
-        "imports": [{
-          "name": "Program.parse",
-          "counter":1
-          }
-      ]
-   }, {
-        "name": "Find.evaluate",
-        "size": 3461,
-        "imports": [{
-          "name": "Program.evaluate",
-          "counter":1
-          }
-      ]
-   }, {
-        "name": "Show.parse",
-        "size": 191,
-        "imports": [{
-          "name": "Program.parse",
-          "counter":1
-          }
-      ]
-   }, {
-        "name": "Show.evaluate",
-        "size": 9893,
-        "imports": [{
-          "name": "Program.evaluate",
-          "counter":1
-          }
-      ]
-   }, {
-        "name": "Main.isVerbose",
-        "size": 9204,
-        "imports": [{
-          "name": "Tokenizer.checkToken",
-          "counter":36
-          }, {
-          "name": "FileSystemController.getDirectoryPath",
-          "counter":6
-          }, {
-          "name": "Tokenizer.getAndCheckNext",
-          "counter":9
-          }, {
-          "name": "Tokenizer.tokenize",
-          "counter":88
-          }
-      ]
-   }, {
-        "name": "Main.launchApp",
-        "size": 5222,
-        "imports": [
-      ]
-   }, {
-        "name": "Main.runProgram",
-        "size": 5444,
-        "imports": [
-      ]
-   }, {
-        "name": "Tokenizer.makeCliTokenizer",
-        "size": 5953,
-        "imports": [{
-          "name": "Main.runProgram",
-          "counter":4
-          }
-      ]
-   }, {
-        "name": "Tokenizer.getAndCheckNext",
-        "size": 8223,
-        "imports": [{
-          "name": "CurrentDirectory.parse",
-          "counter":3
-          }, {
-          "name": "ChangeDirectory.parse",
-          "counter":2
-          }, {
-          "name": "Show.parse",
-          "counter":1
-          }, {
-          "name": "Find.parse",
-          "counter":2
-          }, {
-          "name": "WhereAmI.parse",
-          "counter":1
-          }
-      ]
-   }, {
-        "name": "Tokenizer.getTokenizer",
-        "size": 5056,
-        "imports": [{
-          "name": "Node.<init>",
-          "counter":13
-          }
-      ]
-   }, {
-        "name": "Tokenizer.getNext",
-        "size": 6306,
-        "imports": [{
-          "name": "ChangeDirectory.parse",
-          "counter":1
-          }, {
-          "name": "Find.parse",
-          "counter":1
-          }
-      ]
-   }, {
-        "name": "Tokenizer.checkToken",
-        "size": 9152,
-        "imports": [{
-          "name": "Program.parse",
-          "counter":28
-          }, {
-          "name": "FileSystemElement.parse",
-          "counter":8
-          }
-      ]
-   }, {
-        "name": "Tokenizer.moreTokens",
-        "size": 9493,
-        "imports": [{
-          "name": "Program.parse",
-          "counter":8
-          }
-      ]
-   }, {
-        "name": "Tokenizer.tokenize",
-        "size": 3159,
+        "name": "Main.<init>",
+        "size": 1229,
         "imports": [
       ]
    }, {
         "name": "JsonLogger.logJson",
-        "size": 2295,
+        "size": 9463,
         "imports": [{
           "name": "TrackerManager.logAsJSON",
           "counter":1
           }
       ]
    }, {
-        "name": "FileSystemController.getCurrentPath",
-        "size": 2059,
-        "imports": [{
-          "name": "WhereAmI.evaluate",
-          "counter":1
-          }, {
-          "name": "Main.launchApp",
-          "counter":1
-          }, {
-          "name": "CurrentDirectory.evaluate",
-          "counter":3
-          }
-      ]
-   }, {
-        "name": "FileSystemController.find",
-        "size": 3618,
-        "imports": [{
-          "name": "Find.evaluate",
-          "counter":1
-          }
-      ]
-   }, {
-        "name": "FileSystemController.show",
-        "size": 5245,
-        "imports": [{
-          "name": "Show.evaluate",
-          "counter":1
-          }
-      ]
-   }, {
-        "name": "FileSystemController.getDirectoryPath",
-        "size": 4905,
-        "imports": [{
-          "name": "ChangeDirectory.evaluate",
-          "counter":1
-          }
-      ]
-   }, {
-        "name": "FileSystemController.getInstance",
-        "size": 9472,
-        "imports": [{
-          "name": "Find.evaluate",
-          "counter":1
-          }, {
-          "name": "WhereAmI.evaluate",
-          "counter":1
-          }, {
-          "name": "ChangeDirectory.evaluate",
-          "counter":2
-          }, {
-          "name": "Main.launchApp",
-          "counter":1
-          }, {
-          "name": "Show.evaluate",
-          "counter":1
-          }, {
-          "name": "CurrentDirectory.evaluate",
-          "counter":3
-          }
-      ]
-   }, {
-        "name": "FileSystemController.setCurrPath",
-        "size": 1616,
-        "imports": [{
-          "name": "ChangeDirectory.evaluate",
-          "counter":1
-          }
+        "name": "Thread.run",
+        "size": 5477,
+        "imports": [
       ]
    }
 ]

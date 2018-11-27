@@ -15,7 +15,7 @@ public class JsonLogger {
 
     public static void logJson(Map<String, ClassTracker> summary) {
         String path = System.getProperty("user.dir");
-        System.out.println(path);
+//        System.out.println(path);
         try {
             Writer fw = new FileWriter(path + "/out.json");
 

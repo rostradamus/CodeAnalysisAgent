@@ -1,3 +1,3 @@
-Boot-Class-Path: lib/javassist.jar
+Boot-Class-Path: lib/javassist.jar bin/src/tracker/TrackerManager.class
 Premain-Class: src.PreMain
 Main-Class: src.PreMain
