@@ -1,5 +1,5 @@
 
-var diameter = 1500,
+var diameter = 800,
     radius = diameter / 2,
     innerRadius = radius - 120;
 
@@ -8,7 +8,7 @@ var cluster = d3.cluster()
 
 var line = d3.radialLine()
     .curve(d3.curveBundle.beta(0.85))
-    .radius(function(d) { return d.y; })
+    .radius(d => d.y)
     .angle(function(d) { return d.x / 180 * Math.PI; });
 
 
@@ -199,6 +199,7 @@ function packageImports(nodes) {
 
   // For each import, construct a link from the source to target node.
   nodes.forEach(function(d) {
+//    console.log(d);
     if (d.data.imports) d.data.imports.forEach(function(i) {
       if(i.counter > 1) isStatic = 0;
       linkMap[d.data.name + " " + i.name]=i.counter;

@@ -29,13 +29,22 @@ public class JsonLogger {
                         .concat("\n        \"name\": \"" + className + "." + methodName + "\",")
                         .concat("\n        \"size\": " + new Random().nextInt(10000) +",")
                         .concat("\n        \"imports\": [");
-                String s = "";
+                List<String> imports = new ArrayList<>();
+                String callerObj = "";
                 for (MethodTracker caller : methodTracker.getCallerMap().keySet()) {
-                    s = s.concat("\n            \"" + caller.getClassTracker().getClassName() + "." + caller.getMethodName() + "\",");
+                    imports.add(callerObj.concat("{")
+                            .concat("\n          \"name\": \"" + caller.getClassTracker().getClassName() + "." + caller.getMethodName() + "\",")
+                            .concat("\n          \"counter\":" + methodTracker.getCallerMap().get(caller).toString())
+                            .concat("\n          }"));
+//                    System.out.println(methodTracker.getCallerMap().get(caller));
+//                    callerObj = callerObj.concat("\n            \"" + caller.getClassTracker().getClassName() + "." + caller.getMethodName() + "\",");
                 }
-                jsonObjEntry = jsonObjEntry.concat(s.length() > 0 ? s.substring(0, s.length() - 1) : s)
-                        .concat("\n        ]")
-                        .concat("\n    }");
+                jsonObjEntry = jsonObjEntry.concat(String.join(", ", imports))
+                    .concat("\n      ]")
+                    .concat("\n   }");
+//                jsonObjEntry = jsonObjEntry.concat(callerObj.length() > 0 ? callerObj.substring(0, callerObj.length() - 1) : callerObj)
+//                        .concat("\n        ]")
+//                        .concat("\n    }");
 
                 listOfEntries.add(jsonObjEntry);
             }))));
