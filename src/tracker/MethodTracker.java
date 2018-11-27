@@ -15,12 +15,6 @@ public class MethodTracker {
         this.callerMap = new HashMap<>();
     }
 
-    public MethodTracker(String methodName, ClassTracker classTracker) {
-        this.methodName = methodName;
-        this.classTracker = classTracker;
-        this.callerMap = new HashMap<>();
-    }
-
     public String getMethodName() {
         return methodName;
     }

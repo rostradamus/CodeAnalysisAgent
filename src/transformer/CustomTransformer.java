@@ -1,26 +1,13 @@
 package src.transformer;
 
-import java.io.*;
-import java.net.URL;
-import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
 import java.security.*;
 import java.lang.instrument.*;
-import java.util.Objects;
-
 import javassist.*;
-import javassist.bytecode.ClassFile;
-import src.tracker.ClassTracker;
 
 public class CustomTransformer implements ClassFileTransformer {
-    private String target;
-
-    public CustomTransformer(String target) {
+    public CustomTransformer() {
         super();
-        this.target = target;
     }
 
     private boolean isLibrary(String className) {
@@ -44,7 +31,7 @@ public class CustomTransformer implements ClassFileTransformer {
             cl = pool.makeClass(new java.io.ByteArrayInputStream(b));
 //            System.out.println("Transforming: " + cl.getSimpleName());
             if (cl.getName().contains("ClassTracker") || cl.getName().contains("MethodTracker")
-                || cl.getName().contains("TrackerManager")){
+                || cl.getName().contains("TrackerManager")) {
                 cl.detach();
                 return b;
             }
@@ -72,14 +59,21 @@ public class CustomTransformer implements ClassFileTransformer {
     private void changeMethod(CtBehavior method) throws CannotCompileException {
         String longClassName = method.getDeclaringClass().getName();
         String className = method.getDeclaringClass().getSimpleName();
-        String customBlockV2 =
+//        String customBlockV2 =
+//                "if (Thread.currentThread().getStackTrace().length > 2 " +
+//                        "&& !Thread.currentThread().getStackTrace()[2].getMethodName().equals(\"" + method.getName() + "\")) {" +
+//                        "src.tracker.TrackerManager.getInstance().logMethodCall(" +
+//                        "\""+ className +"\", \"" + method.getName() + "\", " +
+//                        "Thread.currentThread().getStackTrace()[2].getClassName()," +
+//                        "Thread.currentThread().getStackTrace()[2].getMethodName());}";
+        String customBlock =
                 "if (Thread.currentThread().getStackTrace().length > 2 " +
                 "&& !Thread.currentThread().getStackTrace()[2].getClassName().equals(\"" + longClassName + "\")) {" +
                 "src.tracker.TrackerManager.getInstance().logMethodCall(" +
                 "\""+ className +"\", \"" + method.getName() + "\", " +
                 "Thread.currentThread().getStackTrace()[2].getClassName()," +
                 "Thread.currentThread().getStackTrace()[2].getMethodName());}";
-        method.insertBefore(customBlockV2);
+        method.insertBefore(customBlock);
 
         if (method.getName().equals("main")) {
             method.insertAfter("src.tracker.TrackerManager.getInstance().logAsJSON();");

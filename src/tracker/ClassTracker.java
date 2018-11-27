@@ -39,10 +39,6 @@ public class ClassTracker {
         return mt;
     }
 
-    public void logCount() {
-
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
