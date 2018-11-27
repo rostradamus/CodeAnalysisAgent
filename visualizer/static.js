@@ -57,7 +57,7 @@ d3.json("flare.json", function(error, classes) {
         }else{
         var hue = getLinkColorLevel(d.source.data.name+ " "+ d.target.data.name);
         console.log(hue);
-        return getColor(hue);
+        return getStaticColor();
       }
     });
       //   return
@@ -162,10 +162,8 @@ function packageHierarchy(classes) {
   return d3.hierarchy(map[""]);
 }
 
-function getColor(value){
-    //value from 0 to 1
-    var hue=((1-value)*120).toString(10);
-    return ["hsl(",hue,",100%,50%)"].join("");
+function getStaticColor(){
+    return  "#0000ff";
 }
 
 function getLinkColorLevel(link){
@@ -201,7 +199,7 @@ function packageImports(nodes) {
   nodes.forEach(function(d) {
     if (d.data.imports) d.data.imports.forEach(function(i) {
       if(i.counter > 1) isStatic = 0;
-      linkMap[d.data.name + " " + i.name]=i.counter;
+      linkMap[d.data.name + " " + i.name]=1;
       imports.push(map[d.data.name].path(map[i.name]));
     });
   });
