@@ -32,7 +32,7 @@ var colorMap = new Map();
 var usedColor = new Set();
 var sortedLink=[];
 
-d3.json("flare.json", function(error, classes) {
+d3.json("flare2.json", function(error, classes) {
 
 
   if (error) throw error;
